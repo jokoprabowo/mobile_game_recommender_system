@@ -1,1 +1,1 @@
-# mobile_game_recommendation_system
+# mobile_game_recommender_system
