@@ -227,3 +227,23 @@ print(len(df[df.duplicated(subset='title')]))
 <p>Berikut adalah kategori permainan setelah disederhanakan:</p>
 
 `action`, `adventure`, `arcade`, `board`, `card`, `casino`, `casual`, `educational`, `music`, `puzzel`, `racing`, `role playing`, `simulation`, `sports`, `strategy`, `trivia`, dan `word`
+
+### Menambahkan data penting
+<p>Proses ini dilakukan untuk membuat dataframe baru yang diperlukan dalam proses Collaborative filtering, karena dalam proses tersebut membutuhkan data pengguna yang telah memainkan permainan agar menjjadi acuan untuk memberikan rekomendasi atas permainan yang belum pernah dimainkan berdasarkan penilaian terhadap permainan yang telah dimainkan</p>
+<p>Berikut adalah dataframe baru yang dinamakan review untuk menampung semua data yang dibutuhkan:</p>
+
+<div align="center">
+
+  | |userId|gameId|rating
+  ---|---|---|---
+  0|52c503fd-1a1f-43f8-a710-8d3e39b065cd|15997c2d-8dd9-4fb6-bed1-748ba829c950|1
+  1|cdf9fa37-8de2-4ddb-b0d7-faa2a76d5024|89698ff9-93db-4312-aa8b-4a4fa7051b54|4
+  2|6af19149-b66c-4728-a49f-03ec8b8da828|bb89b8cd-b259-4bbb-a4bb-e3e8cdccdb74|4
+  3|76fb4a71-3764-4508-ad85-c238d089c15d|42e7bcac-5e97-4f46-a277-17ddb6d4ede8|1
+  4|b76b8bd4-7cc2-4081-ad38-f114227b1ea2|b602c45d-c173-4eb7-912f-1d6f7fc0d715|2
+</div>
+
+Yang mana `userId` merupakan identitas unik milik pengguna, `gameId` merupakan identitas unik milik permainan, dan `rating` merupakan penilaian pengguna terhaadap permainan tersebut dengan skala 1 sampai 5. Dan melalui data diatas pula terjadi perubahan terhadap dataset permainan, karena `gameId` ditambahkan untuk memberikan identitas terhadap semua permainan.
+
+## Model development
+### Content based filtering
