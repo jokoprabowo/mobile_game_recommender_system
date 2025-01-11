@@ -362,5 +362,9 @@ Berdasarkan model yang telah dibuat, hasil dari metrik `Root Mean Squared Error`
 
 <div align="center">
   
-  <img src=""/>
+  <img src="images/root_mean_squared_error.png"/>
 </div>
+
+Data visual diatas berdasarkan model yang telah dibuat sebelumnya menunjukan `root mean squared error` memperoleh nilai sekitar 0.15 pada data latih dan 0.40 pada data uji. Ini berarti bahwa model yang telah dibuat menghasilkan rekomendasi yang cukup baik.
+
+## Kesimpulan
