@@ -234,7 +234,7 @@ print(len(df[df.duplicated(subset='title')]))
 `action`, `adventure`, `arcade`, `board`, `card`, `casino`, `casual`, `educational`, `music`, `puzzel`, `racing`, `role playing`, `simulation`, `sports`, `strategy`, `trivia`, dan `word`
 
 ### Menambahkan data penting
-<p>Proses ini dilakukan untuk membuat dataframe baru yang diperlukan dalam proses Collaborative filtering, karena dalam proses tersebut membutuhkan data pengguna yang telah memainkan permainan agar menjjadi acuan untuk memberikan rekomendasi atas permainan yang belum pernah dimainkan berdasarkan penilaian terhadap permainan yang telah dimainkan</p>
+<p>Proses ini dilakukan untuk membuat dataframe baru yang diperlukan dalam proses Collaborative filtering, karena dalam proses tersebut membutuhkan data pengguna yang telah memainkan permainan agar menjadi acuan untuk memberikan rekomendasi atas permainan yang belum pernah dimainkan berdasarkan penilaian terhadap permainan yang telah dimainkan. Proses ini dilakukan karena dataset review yang dibutuhkan ini tidak terlampir dalam sumber dataset yang digunakan dalam proyek ini.</p>
 <p>Berikut adalah dataframe baru yang dinamakan review untuk menampung semua data yang dibutuhkan:</p>
 
 <div align="center">
@@ -282,7 +282,9 @@ Seperti yang terlihat pada tabel diatas, kolom `user`, dan `game` merupakan hasi
 ## Model development
 
 ### Content based filtering
-Proses ini dilakukan untuk mengimplementasikan beberapa data yang sudah disiapkan sebelumnya untuk kemudian memberikan hasil berupa rekomendasi yang didasari pada data-data tersebut. Proses ini diawali dengan membuat model `Cosine Similarity`, model ini merupakan model yang digunakan untuk menghitung derajat kesamaan terhadap dua objek yang dinyatakan dalam dua vektor. Dengan mengimplementasikan hasil matriks dari model `TI-IDF` kedalam model `Cosine Similarity`, model tersebut akan menghitung derajat kesamaan berdasarkan kategori permainan dari setiap permainan dan melalui hasil dari model tersebut, proses ini dapat memberikan rekomendasi permainan berdasarkan permainan yang menjadi masukan. Dalam kasus ini permainan `Brawl Stars` digunakan sebagai masukan, yang kemudian menghasilkan:
+Proses ini dilakukan untuk mengimplementasikan beberapa data yang sudah disiapkan sebelumnya untuk kemudian memberikan hasil berupa rekomendasi yang didasari pada data-data tersebut. Proses ini diawali dengan membuat model `Cosine Similarity`, model ini merupakan model yang digunakan untuk menghitung derajat kesamaan terhadap dua objek yang dinyatakan dalam dua vektor. Dengan mengimplementasikan hasil matriks dari model `TI-IDF` kedalam model `Cosine Similarity`, model tersebut akan menghitung derajat kesamaan berdasarkan kategori permainan dari setiap permainan dan melalui hasil dari model tersebut, proses ini dapat memberikan rekomendasi permainan berdasarkan permainan yang menjadi masukan.
+
+Dalam kasus ini permainan `Brawl Stars` digunakan sebagai masukan, yang kemudian menghasilkan:
 
 <div align="center">
 
@@ -298,3 +300,27 @@ Proses ini dilakukan untuk mengimplementasikan beberapa data yang sudah disiapka
 Tabel diatas merupakan 5 rekomendasi permainan yang dihasilkan berdasarkan masukan yang diberikan. `Brawl Stars` merupakan permainan dengan kategori permainan `action`, sehingga proses ini menghasilkan rekomendasi 5 permainan dengan kategori `action` sesuai dengan kategori permainan yang menjadi masukan.
 
 ### Collaborative filtering
+Proses ini bekerja mulai dari mempelajari aktivitas pengguna dalam memainkan permainan, oleh karenanya proses ini membutuhkan `review` dataset yang telah dibuat sebelumnya. Melalui dataset tersebut proses ini mempelajari mulai dari permainan yang telah dimainkan pengguna, kepuasan pengguna terhadap permainan yang terlihat dari penilaian pengguna terhadap permainan tersebut, sampai ke permainan yang belum pengguna tersebut mainkan. Dengan menggunakan kolom-kolom hasil encoding sebelumnya seperti `userId`, dan `gameId` serta kolom `rating` yang diubah kedalam bentuk `float`, model dalam proses ini akan menganalisis dan mencari pola berdasarkan data-data tersebut dan kemudian model ini akan melakukan pencarian semantik sehingga dapat memberikan hasil berupa rekomendasi permainan yang relevan.
+
+Dalam kasus ini aktivitas dari pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d5e582c5` digunakan dan menghasilkan:
+
+<div align="center">
+
+title|category
+---|---
+Archero|action
+Adventure Time: Heroes of Ooo|adventure
+Rise Up|arcade
+PianoTiles 3|music
+Beat Shooter|music
+ضربة معلم - لعبة الغاز مسلية|puzzle
+Bubble Shooter: Panda Pop!|puzzle
+Fast Racing 3D|racing
+Assassin's Creed Rebellion: Adventure RPG|role playing
+Fashion Empire - Dressup Boutique Sim|role playing
+</div>
+
+Tabel diatas merupakan 10 permainan yang direkomendasikan dari proses ini berdasarkan dari aktivitas pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d5e582c5`, 10 permainan tersebut merupakan permainan dengan kategori yang sama dengan permainan-permainan yang biasa dimainkan pengguna yang direkomendasikan dengan rating tertinggi.
+
+## Evaluation
+
