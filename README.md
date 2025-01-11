@@ -324,3 +324,43 @@ Tabel diatas merupakan 10 permainan yang direkomendasikan dari proses ini berdas
 
 ## Evaluation
 
+### Content based filtering
+Metrik evaluasi yang digunakan dalam model ini merupakan metrik `Precision`. `Precision` adalah metrik yang digunakan dalam pembelajaran mesin untuk mengevaluasi seberapa baik model dapat memprediksi kejadian positif dengan tepat. `Precision` juga dikenal sebagai nilai prediktif positif. `Precision` dihitung dengan membagi jumlah positif benar (prediksi positif yang benar) dengan jumlah total prediksi positif (baik positif benar maupun salah). Hasilnya adalah nilai antara 0 dan 1, atau persentase, dengan nilai yang lebih tinggi menunjukkan presisi yang lebih baik. Presisi sempurna sebesar 1,0 berarti model selalu benar saat memprediksi kelas target.
+
+<div align="center">
+  
+  ![images](https://github.com/user-attachments/assets/d438a7ed-2cbb-4c72-8ca5-fc79030abbef)
+</div>
+
+Dalam kasus ini dimana yang dicari merupakan 5 rekomendasi permainan dengan kategori yang sama seperti permainan `Brawl Stars` yaitu `action`, dan berdasarkan dari hasil yang telah didapat diketahui:
+*  True positive = 5
+*  False positive = 0
+
+Sehingga:
+
+> True positive / True positive + False positive
+> 5 / 5 + 0 = 1.0
+
+Berdasarkan hasil tersebut dapat disimpulkan bahwa model berhasil memberikan hasil rekomendasi yang presisi karena menyentuh nilai sempurna sebersar 1.0
+
+### Collaborative filtering
+Metrik evaluasi yang digunakan dalam model ini adalah `RMSE` atau `Root Mean Squared Error`. `Root Mean Squared Error` adalah salah satu dari dua indikator kinerja utama untuk model regresi. Indikator ini mengukur perbedaan rata-rata antara nilai yang diprediksi oleh model dan nilai aktual. Indikator ini memberikan estimasi seberapa baik model mampu memprediksi nilai target (akurasi).
+
+Semakin rendah nilai `Root Mean Squared Error`, semakin baik model tersebut. Model yang sempurna (model hipotetis yang akan selalu memprediksi nilai yang diharapkan secara tepat) akan memiliki nilai `Root Mean Squared Error` sebesar 0.
+
+<div align="center">
+  
+  ![download](https://github.com/user-attachments/assets/1b35a0c9-87b2-46c7-bfc4-46ee9694de86)
+</div>
+
+Dimana:
+* $A_t$ : Nilai aktual
+* $F_t$ : Nilai hasil prediksi
+* n: Banyak data
+
+Berdasarkan model yang telah dibuat, hasil dari metrik `Root Mean Squared Error` adalah sebagai berikut:
+
+<div align="center">
+  
+  <img src=""/>
+</div>
