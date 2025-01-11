@@ -1,6 +1,9 @@
 # Laporan Proyek Machine Learning - Joko Prabowo
+
 ## Domain Proyek
+
 ## Business Understanding
+
 ### Problem Statements
 Berdasarkan latar belakang yang telah dipaparkan. Berikut adalah daftar permasalahan yang perlu diselesaikan dalam proyek ini:
 <ul>
@@ -91,6 +94,7 @@ Keterangan untuk setiap kolom dari dataset ini adalah sebagai berikut:
 Berdasarkan tabel diatas dapat disimpulkan bahwa pada dataset ini terdapat `15 kolom` dengan `1730 baris` dimana setiap barisnya merupakan data yang valid tanpa ada satupun data yang hilang.
 
 ## Exploratory Data Analysis
+
 ### Deskripsi Variabel
 Berdasarkan detail deskripsi dari data ditemukan bahwa:
 
@@ -203,6 +207,7 @@ Dimana:
 <p>Data visual diatas merupakan diagram tebar yang memvisualisasikan korelasi antara total penilaian dengan penilaian 5 bintang, penilaian 4 bintang, penilaian 3 bintang, penilaian 2 bintang, dan penilaian 1 bintang. Berdasarkan data visual diatas total penilaian memiliki hubungan yang kuat dengan penilaian 5 bintang, penilaian 4 bintang, penilaian 3 bintang, penilaian 2 bintang, dan penilaian 1 bintang. Hal ini dibuktikan melalui skor korelasi yang diperoleh dari heatmap secara berurutan yaitu 1, 0.95, 0.98, 0.97, dan 0.94.</p>
 
 ## Data Preparation
+
 ### Menangani missing value
 <p>Sebelum data diproses lebih lanjut, data terlebih dahulu akan dibersihkan dari data yang mengandung nilai kosong, dan data terduplikat. Hal ini dilakukan agar data-data tidak lengkap tersebut tidak menggangu dalam pengimplementasian model nanti.</p>
 
@@ -245,5 +250,51 @@ print(len(df[df.duplicated(subset='title')]))
 
 Yang mana `userId` merupakan identitas unik milik pengguna, `gameId` merupakan identitas unik milik permainan, dan `rating` merupakan penilaian pengguna terhaadap permainan tersebut dengan skala 1 sampai 5. Dan melalui data diatas pula terjadi perubahan terhadap dataset permainan, karena `gameId` ditambahkan untuk memberikan identitas terhadap semua permainan.
 
+### TF-IDF vectorizer
+<p>Proses ini dilakukan untuk membuat representasi numerik terhadap fitur yang akan digunakan sebagai tolak ukur atau acuan terhadap permainan yang akan direkomendasikan, fitur penting tersebut adalah fitur kategori. Fitur ini akan ditransformasikan pada bentuk dasarnya yang kemudian akan direpresentasikan ke dalam fitur numerik</p>
+
+title|action|sports|simulation|action|adventure|arcade|racing|casino|action|music
+---|---|---|---|---|---|---|---|---|---|---								
+CarX Highway Racing|0.0|0.0|0.0|0.0|0.0|0.0|1.0|0.0|0.0|0.0
+Travelling Millionaire|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
+Pepi House: Happy Family|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
+PPSSPP - PSP emulator|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
+Gangstar Vegas: World of Crime|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
+
+<p>Tabel diatas merupakan representasi dari hasil proses TF-IDF terhadap beberapa sampel permainan.</p>
+
+### Encoding features
+<p>Proses ini dilakukan untuk mengubah fitur kategorik yang dibutuhkan dalam proses menjadi fitur numerik, hal ini terjadi karena model yang akan digunakan nanti hanya menerima fitur numerik sehingga setiap fitur kategorik yang akan menjadi atribut perlu di encode kedalam numerik</p>
+
+<div align="center">
+
+| |userId|gameId|rating|user|game
+---|---|---|---|---|---
+0|640457f7-b759-474b-93c2-c2db26a789dd|f29cc637-d036-40f1-9c09-57fd4ada8295|3|0|0
+1|6682981f-e67c-419e-8051-064016a6de99|f2401433-f461-4ebc-ab28-788933e0e4fb|2|1|1
+2|78c4d317-69f6-4a91-b744-e897c92bfc47|80ba3fc1-8a72-4779-9b2b-8672db15e70e|1|2|2
+3|dc63754a-ee5e-49bd-984d-2c5439299c88|316fd04e-7bd2-4122-a2fb-a18bf293a3a0|3|3|3
+4|228d80b2-df94-4903-9a6d-938e8ef77aba|58486875-5d6c-4904-b511-12b61cee1432|4|4|4
+</div>
+
+Seperti yang terlihat pada tabel diatas, kolom `user`, dan `game` merupakan hasil encode dari kolom `userId`, dan `gameId` yang kemudian dapat digunakan untuk proses selanjutnya.
+
 ## Model development
+
 ### Content based filtering
+Proses ini dilakukan untuk mengimplementasikan beberapa data yang sudah disiapkan sebelumnya untuk kemudian memberikan hasil berupa rekomendasi yang didasari pada data-data tersebut. Proses ini diawali dengan membuat model `Cosine Similarity`, model ini merupakan model yang digunakan untuk menghitung derajat kesamaan terhadap dua objek yang dinyatakan dalam dua vektor. Dengan mengimplementasikan hasil matriks dari model `TI-IDF` kedalam model `Cosine Similarity`, model tersebut akan menghitung derajat kesamaan berdasarkan kategori permainan dari setiap permainan dan melalui hasil dari model tersebut, proses ini dapat memberikan rekomendasi permainan berdasarkan permainan yang menjadi masukan. Dalam kasus ini permainan `Brawl Stars` digunakan sebagai masukan, yang kemudian menghasilkan:
+
+<div align="center">
+
+ | |title|category
+---|---|---
+0|Garena Free Fire- World Series|action
+1|FRAG Pro Shooter|action
+2|Nebulous.io|action
+3|Sea Battle 2|action
+4|War Machines: Tank Battle - Army & Military Games|action
+</div>
+
+Tabel diatas merupakan 5 rekomendasi permainan yang dihasilkan berdasarkan masukan yang diberikan. `Brawl Stars` merupakan permainan dengan kategori permainan `action`, sehingga proses ini menghasilkan rekomendasi 5 permainan dengan kategori `action` sesuai dengan kategori permainan yang menjadi masukan.
+
+### Collaborative filtering
