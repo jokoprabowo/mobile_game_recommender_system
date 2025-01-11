@@ -1,29 +1,32 @@
 # Laporan Proyek Machine Learning - Joko Prabowo
 
 ## Domain Proyek
+Game berasal dari kata inggris yang berarti permainan. Permainan adalah sesuatu yang digunakan untuk bermain yang dimainkan dengan aturan-aturan tertentu. Game adalah permainan yang menggunakan media elektronik, merupakan sebuah hiburan berbentuk mulimedia yang dibuat semenarik mungkin agar pemain mendapatkan sesuatu sehingga mendapatkan kepuasan batin (Purnama, 2021). Permainan dapat dimainkan menggunakan media elektronik apapun, mulai dari komputer, laptop, tablet, bahkan melalui telpon genggam. Hal ini membuat siapapun dan dari kalangan manapun bisa memainkan permainan tersebut. Google Play adalah layanan distribusi digital yang dioperasikan dan dikembangkan oleh Google. Layanan ini berfungsi sebagai toko aplikasi resmi untuk sistem operasi Android, memungkinkan pengguna untuk menelusuri dan mengunduh aplikasi yang dikembangkan menggunakan kit pengembangan perangkat lunak Android (SDK) dan diterbitkan melalui Google (Wahyudi, 2022). Google Play merupakan penyedia layanan terutama permainan yang paling laris pada saat ini.
+
+Sistem rekomendasi adalah metode yang digunakan untuk memberikan rekomendasi dengan memprediksi nilai suatu item bagi seorang pengguna, kemudian menyajikan item dengan nilai prediksi tertinggi. Prediksi dalam sistem rekomendasi dapat diterapkan pada berbagai bidang, seperti buku, musik, film, tempat wisata, dan banyak lagi (Sari et al., 2020). Oleh karenanya dalam proyek ini penulis ingin membuat sistem rekomendasi untuk merekomendasikan permainan yang ada pada Google Playstore menggunakan dua metode yaitu metode Content-based filtering, dan metode Collaborative filtering.
 
 ## Business Understanding
 
 ### Problem Statements
 Berdasarkan latar belakang yang telah dipaparkan. Berikut adalah daftar permasalahan yang perlu diselesaikan dalam proyek ini:
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Permainan apa yang paling diminati oleh pengguna.</li>
+  <li>Bagaimana cara membuat sistem rekomendasi yang baik.</li>
+  <li>Sistem rekomendasi yang seperti apa yang baik untuk digunakan.</li>
 </ul>
 
 ### Goals
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Mengetahui permainan yang paling banyak diminati pengguna.</li>
+  <li>Membuat sistem rekomendasi menggunakan metode Content-based filtering serta Collaborative filtering.</li>
+  <li>Mengevaluasi hasil dari sistem rekomendasi yang telah dibuat berdasarkan metriknya masing-masing.</li>
 </ul>
 
 ### Solution Statements
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Melakukan Exploratory Data Analysis (EDA) terhadap data yang ada.</li>
+  <li>Mengimplementasikan Content-based filtering serta Collaborative filtering pada sistem rekomendasi.</li>
+  <li>Melakukan evaluasi terhadap performa dari model yang telah dibuat.</li>
 </ul>
 
 ## Data Undestanding
@@ -368,3 +371,14 @@ Berdasarkan model yang telah dibuat, hasil dari metrik `Root Mean Squared Error`
 Data visual diatas berdasarkan model yang telah dibuat sebelumnya menunjukan `root mean squared error` memperoleh nilai sekitar 0.15 pada data latih dan 0.40 pada data uji. Ini berarti bahwa model yang telah dibuat menghasilkan rekomendasi yang cukup baik.
 
 ## Kesimpulan
+Berdasarkan setiap proses yang telah dilakukan dalam proyek ini, dapat disimpulkan bahwa:
+
+1. `Garena Free Fire - World Series` merupakan permainan yang saat ini sangat diminati oleh pengguna, karena permainan ini mendapatkan total penilaian paling tinggi dibanding permainan lain yaitu lebih dari 80.000.000 penilaian.
+2. Proyek ini berhasil mengimplementasikan metode `Content-based filtering` dan `Collaborative filtering` ke dalam sistem rekomendasi. Hal ini dibuktikan dengan keberhasilan model merekomendasikan permainan berdasarkan kategori permainan dengan aktivitas pengguna.
+3. Proyek ini berhasil membangun sistem rekomendasi yang baik. Hal ini dibuktikan melalui metrik yang dihasilkan melalui model yang telah dibuat, dimana metrik `precision` memperoleh nilai `1.0` yang berarti nilai sempurna, serta metrik `root mean squared error` yang memperoleh nilai `0.15` pada data latih dan `0.40` pada data uji yang artinya model ini cukup baik untuk digunakan.
+
+
+## Referensi
+1. Purnama, R. (2021). Perancangan Aplikasi Game Petualangan Si Unyil Berbasis Android Menggunakan Metode Finite State Mechine. Jurnal Dunia Ilmu, 1(1).
+2. Wahyudi, B. (2022). Prediksi Peringkat Aplikasi di Google Play Menggunakan Metode Random Forest. Jurnal Nasional Teknologi Komputer, 2(1), 38-47
+1. Sari, K. R., Suharso, W., & Azhar, Y. (2020). Pembuatan Sistem Rekomendasi Film dengan Menggunakan Metode Item Based Collaborative Filtering pada Apache Mahout. Jurnal Repositor, 2(6).
