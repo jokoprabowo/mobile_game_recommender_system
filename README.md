@@ -317,16 +317,16 @@ Dalam kasus ini aktivitas dari pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d
 
 title|category
 ---|---
-Archero|action
-Adventure Time: Heroes of Ooo|adventure
-Rise Up|arcade
-PianoTiles 3|music
-Beat Shooter|music
-ضربة معلم - لعبة الغاز مسلية|puzzle
-Bubble Shooter: Panda Pop!|puzzle
-Fast Racing 3D|racing
-Assassin's Creed Rebellion: Adventure RPG|role playing
-Fashion Empire - Dressup Boutique Sim|role playing
+PUBG MOBILE VN – KONG x GODZILLA|action
+Slap Kings|action
+BADLAND|adventure
+Harry Potter: Wizards Unite|adventure
+Geometry Dash World|arcade
+Free Slots!|casino
+Slots: Free Slot Machines|casino
+Family Farm Seaside|casual
+Ultimate Car Driving Simulator|racing
+Heroes Charge|role playing
 </div>
 
 Tabel diatas merupakan 10 permainan yang direkomendasikan dari proses ini berdasarkan dari aktivitas pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d5e582c5`, 10 permainan tersebut merupakan permainan dengan kategori yang sama dengan permainan-permainan yang biasa dimainkan pengguna yang direkomendasikan dengan rating tertinggi.
