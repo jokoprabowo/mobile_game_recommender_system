@@ -281,7 +281,7 @@ Gangstar Vegas: World of Crime|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
 
 </div>
 
-Seperti yang terlihat pada tabel diatas, kolom `user`, dan `game` merupakan hasil encode dari kolom `userId`, dan `gameId` yang kemudian dapat digunakan untuk proses selanjutnya.
+Seperti yang terlihat pada tabel diatas, kolom `user`, dan `game` merupakan hasil encode dari kolom `userId`, dan `gameId` serta kolom `rating` dengan tipe data yang telah diubah dari `integer` menjadi `float` yang kemudian dapat tersebut digunakan untuk proses selanjutnya.
 
 ### Train-test-split data
 Proses ini dilakukan untuk memisahkan data yang telah diproses sebelumnya menjadi data latih dan data uji, yang nantinya data ini akan digunakan untuk modeling. Data latih digunakan untuk melatih model agar kemampuan model dalam menghasilkan data lebih relevan dan semakin baik, serta data uji digunakan untuk mengevaluasi hasil dari proses pelatihan model. Sebelum memisahkan data, pengacakan data dilakukan terlebih dahulu dalam proyek ini menggunakan parameter `frac = 1` serta `random_state = 42`, dimana `frac` merupakan pecahan dari sumbu data yang akan dikembalikan dan `random_state` merupakan benih untuk menghasilkan nomor acak. Setelah data diacak, data akan dipisahkan menjadi data latih dan data uji, dalam proyek ini data akan dipisahkan dengan rasio` 80% data latih` dan `20% data uji`.
