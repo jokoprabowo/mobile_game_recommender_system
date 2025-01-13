@@ -226,7 +226,7 @@ print(len(df[df.duplicated(subset='title')]))
 
 <p>Lalu menggunakan kode diatas, diketahui terdapat 55 baris dengan judul permainan yang sama dalam dataset ini yang kemudian perlu dihapus. Sehingga terdapat total 1675 baris dengan 15 kolom setelah data terduplikat dihapus.</p>
 
-### Menyederhanakan kategori
+### Normalisasi data
 <p>Proses ini dilakukan untuk menyederhanakan kategori dalam permainan kedalam bentuk dasarnya agar lebih mudah diimplementasikan kedalam model nanti</p>
 <p>Berikut adalah daftar kategori sebelum disederhanakan:</p>
 
@@ -267,20 +267,24 @@ Gangstar Vegas: World of Crime|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
 <p>Tabel diatas merupakan representasi dari hasil proses TF-IDF terhadap beberapa sampel permainan.</p>
 
 ### Encoding features
-<p>Proses ini dilakukan untuk mengubah fitur kategorik yang dibutuhkan dalam proses menjadi fitur numerik, hal ini terjadi karena model yang akan digunakan nanti hanya menerima fitur numerik sehingga setiap fitur kategorik yang akan menjadi atribut perlu di encode kedalam numerik</p>
+<p>Proses ini dilakukan untuk mengubah fitur kategorik yang dibutuhkan dalam proses menjadi fitur numerik, hal ini terjadi karena model yang akan digunakan nanti hanya menerima fitur numerik sehingga setiap fitur kategorik yang akan menjadi atribut perlu di encode kedalam numerik. Selain itu perlu dilakukan normalisasi pada data rating untuk mengurangi redudant data, proses ini dilakukan dengan mengubah tipe data rating dari integer menjadi float</p>
 
 <div align="center">
 
 | |userId|gameId|rating|user|game
 ---|---|---|---|---|---
-0|640457f7-b759-474b-93c2-c2db26a789dd|f29cc637-d036-40f1-9c09-57fd4ada8295|3|0|0
-1|6682981f-e67c-419e-8051-064016a6de99|f2401433-f461-4ebc-ab28-788933e0e4fb|2|1|1
-2|78c4d317-69f6-4a91-b744-e897c92bfc47|80ba3fc1-8a72-4779-9b2b-8672db15e70e|1|2|2
-3|dc63754a-ee5e-49bd-984d-2c5439299c88|316fd04e-7bd2-4122-a2fb-a18bf293a3a0|3|3|3
-4|228d80b2-df94-4903-9a6d-938e8ef77aba|58486875-5d6c-4904-b511-12b61cee1432|4|4|4
+0|f162ae33-64be-4adf-bb4c-a63cedd19ec7|0a88090e-4878-416b-b05a-5e539bf33c2e|2.0|0|0
+1|6263e535-3d11-4ed9-b6af-210f66d57576|c63adf39-e80e-4d6b-9ea6-4622ad044904|2.0|1|1
+2|8618872f-4fd9-45a3-b64e-d84b20cbbc1b|fb28ce18-be17-4a22-b5ec-c87887824826|1.0|2|2
+3|0e4678cb-d8a3-4a16-8f45-996c705f537c|5c28648e-b781-46ac-bb34-502365f808b8|3.0|3|3
+4|6263e535-3d11-4ed9-b6af-210f66d57576|006bcd46-b082-44b4-bcc5-cce8d743c696|2.0|1|4
+
 </div>
 
 Seperti yang terlihat pada tabel diatas, kolom `user`, dan `game` merupakan hasil encode dari kolom `userId`, dan `gameId` yang kemudian dapat digunakan untuk proses selanjutnya.
+
+### Train-test-split data
+Proses ini dilakukan untuk memisahkan data yang telah diproses sebelumnya menjadi data latih dan data uji, yang nantinya data ini akan digunakan untuk modeling. Data latih digunakan untuk melatih model agar kemampuan model dalam menghasilkan data lebih relevan dan semakin baik, serta data uji digunakan untuk mengevaluasi hasil dari proses pelatihan model. Sebelum memisahkan data, pengacakan data dilakukan terlebih dahulu dalam proyek ini menggunakan parameter `frac = 1` serta `random_state = 42`, dimana `frac` merupakan pecahan dari sumbu data yang akan dikembalikan dan `random_state` merupakan benih untuk menghasilkan nomor acak. Setelah data diacak, data akan dipisahkan menjadi data latih dan data uji, dalam proyek ini data akan dipisahkan dengan rasio` 80% data latih` dan `20% data uji`.
 
 ## Model development
 
@@ -304,6 +308,8 @@ Tabel diatas merupakan 5 rekomendasi permainan yang dihasilkan berdasarkan masuk
 
 ### Collaborative filtering
 Proses ini bekerja mulai dari mempelajari aktivitas pengguna dalam memainkan permainan, oleh karenanya proses ini membutuhkan `review` dataset yang telah dibuat sebelumnya. Melalui dataset tersebut proses ini mempelajari mulai dari permainan yang telah dimainkan pengguna, kepuasan pengguna terhadap permainan yang terlihat dari penilaian pengguna terhadap permainan tersebut, sampai ke permainan yang belum pengguna tersebut mainkan. Dengan menggunakan kolom-kolom hasil encoding sebelumnya seperti `userId`, dan `gameId` serta kolom `rating` yang diubah kedalam bentuk `float`, model dalam proses ini akan menganalisis dan mencari pola berdasarkan data-data tersebut dan kemudian model ini akan melakukan pencarian semantik sehingga dapat memberikan hasil berupa rekomendasi permainan yang relevan.
+
+Proses ini menggunakan `embedding layer`, komponen ini digunakan untuk menangani data kategoris sebagai data acuan dalam proyek ini. Komponen ini mengubah data kategoris atau diskret menjadi vektor kontinu sehingga jaringan saraf dapat memprosesnya. Selain itu `Adam` digunakan sebagai `Optimizer` dalam proyek ini, `Adam` digunakan karena mudah diterapkan, efisien, sertaa membutuhkan memori yang lebih kecil. `learning_rate = 0.001` diterapkan pada optimizer di proyek ini, hal ini dilakukan agar membuat proses yang dikerjakan model menjadi lebih lambat dan lebih teliti. Selain itu ada beberapa parameter yang digunakan dalam proyek ini seperti `batch_size = 8`, dan `epochs = 100`. Dimana `batch_size` merupakan ukuran dari pelatihan dan `epochs` merupakan jumlah periode untuk melatih model. Parameter ini diterapkan agar proses pelatihan model menjadi cukup cepat dengan proses yaang cukup efisien.
 
 Dalam kasus ini aktivitas dari pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d5e582c5` digunakan dan menghasilkan:
 
