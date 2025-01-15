@@ -234,11 +234,11 @@ print(len(df[df.duplicated(subset='title')]))
 
   | |userId|gameId|rating
   ---|---|---|---
-  0|52c503fd-1a1f-43f8-a710-8d3e39b065cd|15997c2d-8dd9-4fb6-bed1-748ba829c950|1
-  1|cdf9fa37-8de2-4ddb-b0d7-faa2a76d5024|89698ff9-93db-4312-aa8b-4a4fa7051b54|4
-  2|6af19149-b66c-4728-a49f-03ec8b8da828|bb89b8cd-b259-4bbb-a4bb-e3e8cdccdb74|4
-  3|76fb4a71-3764-4508-ad85-c238d089c15d|42e7bcac-5e97-4f46-a277-17ddb6d4ede8|1
-  4|b76b8bd4-7cc2-4081-ad38-f114227b1ea2|b602c45d-c173-4eb7-912f-1d6f7fc0d715|2
+  0|da61fe92-a591-4687-9366-232185264f8d|580891a3-3771-43e8-a590-dfa5841f64af|1
+  1|0f4f8839-c80f-474b-9568-c3fc1c20fab3|8456d8c3-000f-4371-96aa-88441b918c54|2
+  2|2d219fc6-e7b5-4a35-b3a6-6b4802fa3d33|d3f9c3e7-3f4f-48d2-9bd2-4ad58199eeaf|1
+  3|98719602-e05e-4385-a7cb-ea6c1541ac42|54feaa8e-d9c8-4795-bc9e-323754e4e120|5
+  4|7fd0867b-b5a6-4ec5-86c7-f5b667ab2cc8|fffca0c4-3528-4368-ac99-dd2925ce212b|3
 </div>
 
 Yang mana `userId` merupakan identitas unik milik pengguna, `gameId` merupakan identitas unik milik permainan, dan `rating` merupakan penilaian pengguna terhaadap permainan tersebut dengan skala 1 sampai 5. Dan melalui data diatas pula terjadi perubahan terhadap dataset permainan, karena `gameId` ditambahkan untuk memberikan identitas terhadap semua permainan.
@@ -256,13 +256,14 @@ Yang mana `userId` merupakan identitas unik milik pengguna, `gameId` merupakan i
 ### TF-IDF vectorizer
 <p>Proses ini dilakukan untuk membuat representasi numerik terhadap fitur yang akan digunakan sebagai tolak ukur atau acuan terhadap permainan yang akan direkomendasikan, fitur penting tersebut adalah fitur kategori. Fitur ini akan ditransformasikan pada bentuk dasarnya yang kemudian akan direpresentasikan ke dalam fitur numerik</p>
 
-title|action|sports|simulation|action|adventure|arcade|racing|casino|action|music
----|---|---|---|---|---|---|---|---|---|---								
-CarX Highway Racing|0.0|0.0|0.0|0.0|0.0|0.0|1.0|0.0|0.0|0.0
-Travelling Millionaire|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
-Pepi House: Happy Family|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
-PPSSPP - PSP emulator|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
-Gangstar Vegas: World of Crime|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
+title|racing|puzzle|casino|music|arcade|trivia|casino|music|trivia|casino
+---|---|---|---|---|---|---|---|---|---|---
+AVATAR MUSIK - Music and Dance Game|0.0|0.0|0.0|1.0|0.0|0.0|0.0|1.0|0.0|0.0
+Lost in Harmony|0.0|0.0|0.0|1.0|0.0|0.0|0.0|1.0|0.0|0.0
+Mr Bullet - Spy Puzzles|0.0|1.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
+My Candy Love - Episode / Otome game|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
+Sudoku|0.0|1.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0|0.0
+
 
 <p>Tabel diatas merupakan representasi dari hasil proses TF-IDF terhadap beberapa sampel permainan.</p>
 
@@ -273,11 +274,11 @@ Gangstar Vegas: World of Crime|1.0|0.0|0.0|1.0|0.0|0.0|0.0|0.0|1.0|0.0
 
 | |userId|gameId|rating|user|game
 ---|---|---|---|---|---
-0|f162ae33-64be-4adf-bb4c-a63cedd19ec7|0a88090e-4878-416b-b05a-5e539bf33c2e|2.0|0|0
-1|6263e535-3d11-4ed9-b6af-210f66d57576|c63adf39-e80e-4d6b-9ea6-4622ad044904|2.0|1|1
-2|8618872f-4fd9-45a3-b64e-d84b20cbbc1b|fb28ce18-be17-4a22-b5ec-c87887824826|1.0|2|2
-3|0e4678cb-d8a3-4a16-8f45-996c705f537c|5c28648e-b781-46ac-bb34-502365f808b8|3.0|3|3
-4|6263e535-3d11-4ed9-b6af-210f66d57576|006bcd46-b082-44b4-bcc5-cce8d743c696|2.0|1|4
+0|da61fe92-a591-4687-9366-232185264f8d|580891a3-3771-43e8-a590-dfa5841f64af|1.0|0|0
+1|0f4f8839-c80f-474b-9568-c3fc1c20fab3|8456d8c3-000f-4371-96aa-88441b918c54|2.0|1|1
+2|2d219fc6-e7b5-4a35-b3a6-6b4802fa3d33|d3f9c3e7-3f4f-48d2-9bd2-4ad58199eeaf|1.0|2|2
+3|98719602-e05e-4385-a7cb-ea6c1541ac42|54feaa8e-d9c8-4795-bc9e-323754e4e120|5.0|3|3
+4|7fd0867b-b5a6-4ec5-86c7-f5b667ab2cc8|fffca0c4-3528-4368-ac99-dd2925ce212b|3.0|4|4
 
 </div>
 
@@ -317,16 +318,16 @@ Dalam kasus ini aktivitas dari pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d
 
 title|category
 ---|---
-PUBG MOBILE VN – KONG x GODZILLA|action
-Slap Kings|action
-BADLAND|adventure
-Harry Potter: Wizards Unite|adventure
-Geometry Dash World|arcade
-Free Slots!|casino
-Slots: Free Slot Machines|casino
-Family Farm Seaside|casual
-Ultimate Car Driving Simulator|racing
-Heroes Charge|role playing
+Swordigo|adventure
+My Talking Angela|casual
+Angry Birds 2|casual
+Furby BOOM!|casual
+SuperStar SMTOWN|music
+Smash Colors 3D - Free Beat Color Rhythm Ball Game|music
+Moto Wheelie|racing
+Fashion Empire - Dressup Boutique Sim|role playing
+SimCity BuildIt|simulation
+Bus Simulator Indonesia|simulation
 </div>
 
 Tabel diatas merupakan 10 permainan yang direkomendasikan dari proses ini berdasarkan dari aktivitas pengguna dengan id `9a664c85-c632-4ee3-81b1-5403d5e582c5`, 10 permainan tersebut merupakan permainan dengan kategori yang sama dengan permainan-permainan yang biasa dimainkan pengguna yang direkomendasikan dengan rating tertinggi.
